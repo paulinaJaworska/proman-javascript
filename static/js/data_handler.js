@@ -21,16 +21,18 @@ let dataHandler = {
         // the boards are retrieved and then the callback function is called with the boards
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
 
-        boards = this._data['boards'];
-        callback(boards);
+        callback(this._data['boards']);
     },
     getBoard: function (boardId, callback) {
         // the board is retrieved and then the callback function is called with the board
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
 
+        let board;
         for (let board_object of boards) {
-            if (board['id'] === boardId) {
+            if (board_object['id'] === boardId) {
                 board = board_object;
+            } else {
+                throw new Error('No board with given id found');
             }
         }
         callback(board);
@@ -38,6 +40,8 @@ let dataHandler = {
     getStatuses: function (callback) {
         // the statuses are retrieved and then the callback function is called with the statuses
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
+
+        callback(this._data['statuses']);
     },
     getStatus: function (statusId, callback) {
         // the status is retrieved and then the callback function is called with the status
