@@ -1,45 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>ProMan</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ProMan</title>
 
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-        <script src="{{ url_for('static', filename='js/data_handler.js') }}" defer></script>
-        <script src="{{ url_for('static', filename='js/dom.js') }}" defer></script>
-        <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
-    </head>
-    <body>
-        <h1>ProMan</h1>
-        <h2 id="h2"></h2>
-        <div id="boards" style="background-color:blue;">boards
-    <button type='button' onclick="">+ New Board</button>
-	<div id="board>
-		<div id="board_heading" style="background-color:powderblue;">board_heading
-        	<button type='button' onclick="">+ New Card</button>
-            <button type='button' onclick="">Show/Hide</button>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="{{ url_for('static', filename='js/data_handler.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/dom.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/authentication.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+<body>
+    <header class="navbar navbar-fluid navbar-dark bg-dark flex-column flex-md-row bd-navbar">
+        <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="ApiWars"><h1>ProMan</h1>
+        </a>
+
+
+        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+                <div class="nav-item  mr-md-2" id="Logged_user">
+                    <h5 id="hello"></h5>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item  nav-link  mr-md-2 Logout" href="/logout" id="Logout">
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-item  nav-link  mr-md-2" href="#" id="Login" onclick="dom.showLoginModal()">
+                    Login
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-item  nav-link  mr-md-2" href="#" id="Register" onclick="dom.showRegisterModal()">
+                    Register
+                </a>
+            </li>
+        </ul>
+    </header>
+    <h2 id="h2"></h2>
+    <div id="boards" style="background-color:blue;">boards
+        <button type='button' onclick="">+ New Board</button>
+        <div id="board>
+		<div id=" board_heading
+        " style="background-color:powderblue;">board_heading
+        <button type='button' onclick="">+ New Card</button>
+        <button type='button' onclick="">Show/Hide</button>
+    </div>
+
+    <div id="cards_container" style="background-color:red;">
+        <table>
+            <tr>
+                <th>New</th>
+                <th>In progress</th>
+                <th>Testing</th>
+                <th>Done</th>
+            </tr>
+
+            <tr style="background-color:powderblue;">
+                <td>er</td>
+                <td>r</td>
+                <td>ew</td>
+                <td>we</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="bg-modal" id="login-modal">
+        <div class="modal-contents">
+
+            <div class="close" onclick="dom.hideLoginModal()">+</div>
+            <div class="login-header">Log in</div>
+            <p id="login-error"></p>
+
+            <form action="/login" id="login-form">
+                <input type="text" placeholder="username" name="username" id="login_username">
+                <input type="password" placeholder="password" name="password" id="login_password">
+                <button class="btn btn-success" type="submit">Submit</button>
+            </form>
+
         </div>
+    </div>
 
-		<div id="cards_container" style="background-color:red;">
-          <table>
-          <tr>
-          <th>New</th>
-          <th>In progress</th>
-          <th>Testing</th>
-          <th>Done</th>
-          </tr>
+    <div class="bg-modal" id="register-modal">
+        <div class="modal-contents">
 
-          <tr style="background-color:powderblue;">
-          <td>er</td>
-          <td>r</td>
-          <td>ew</td>
-          <td>we</td>
-          </tr>
+            <div class="close" onclick="dom.hideRegisterModal()">+</div>
+            <div class="login-header">Registration</div>
 
-          </table>
+            <p id="register-error"></p>
+
+            <form action="/register" id="register-form" role="form">
+                <input type="text" placeholder="username" name="username" id="register_username">
+                <input type="password" placeholder="password" name="password" id="register_password">
+                <button class="btn btn-success" type="submit">Submit</button>
+            </form>
+
         </div>
-	</div>
-    </body>
+    </div>
+
+</body>
+
 </html>
