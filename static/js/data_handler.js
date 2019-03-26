@@ -46,6 +46,16 @@ let dataHandler = {
     getStatus: function (statusId, callback) {
         // the status is retrieved and then the callback function is called with the status
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
+
+        let status;
+        for (let status_object of boards) {
+            if (status_object['id'] === statusId) {
+                status = status_object;
+            } else {
+                throw new Error('No status with given id found');
+            }
+        }
+        callback(status);
     },
     getCardsByBoardId: function (boardId, callback) {
         // the cards are retrieved and then the callback function is called with the cards
