@@ -20,13 +20,13 @@ let dataHandler = {
     getBoards: function (callback) {
         // the boards are retrieved and then the callback function is called with the boards
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
-
         callback(this._data['boards']);
     },
     getBoard: function (boardId, callback) {
         // the board is retrieved and then the callback function is called with the board
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
 
+        const boards = this._data['boards'];
         let board;
         for (let board_object of boards) {
             if (board_object['id'] === boardId) {
@@ -40,15 +40,15 @@ let dataHandler = {
     getStatuses: function (callback) {
         // the statuses are retrieved and then the callback function is called with the statuses
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
-
         callback(this._data['statuses']);
     },
     getStatus: function (statusId, callback) {
         // the status is retrieved and then the callback function is called with the status
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
 
+        const statuses = this._data['statuses'];
         let status;
-        for (let status_object of boards) {
+        for (let status_object of statuses) {
             if (status_object['id'] === statusId) {
                 status = status_object;
             } else {
@@ -60,6 +60,17 @@ let dataHandler = {
     getCardsByBoardId: function (boardId, callback) {
         // the cards are retrieved and then the callback function is called with the cards
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
+
+        const all_cards = this._data['cards'];
+        let cards = [];
+        for (let card_object of all_cards) {
+            if (card_object['board_id'] === boardId) {
+                cards.push(card_object);
+            } else {
+                throw new Error('No cards with given board id found');
+            }
+        }
+        callback(status);
     },
     getCard: function (cardId, callback) {
         // the card is retrieved and then the callback function is called with the card
