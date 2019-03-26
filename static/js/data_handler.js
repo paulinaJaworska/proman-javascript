@@ -70,11 +70,22 @@ let dataHandler = {
                 throw new Error('No cards with given board id found');
             }
         }
-        callback(status);
+        callback(cards);
     },
     getCard: function (cardId, callback) {
         // the card is retrieved and then the callback function is called with the card
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
+
+        const cards = this._data['cards'];
+        let card;
+        for (let card_object of cards) {
+            if (card_object['id'] === cardId) {
+                card = card_object;
+            } else {
+                throw new Error('No status with given id found');
+            }
+        }
+        callback(card);
     },
     createNewBoard: function (boardTitle, callback) {
         // creates new board, saves it and calls the callback function with its data
