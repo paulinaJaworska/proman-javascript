@@ -2,22 +2,26 @@
 let dom = {
     loadBoards: function () {
         // retrieves boards and makes showBoards called
-        const data = dataHandler._data;
-        const boards = data.boards;
+        // const data = dataHandler._data;
+        const boards = dataHandler._data.boards;
+        this.showBoards(boards)
     },
     showBoards: function (boards) {
         // shows boards appending them to #boards div
         // it adds necessary event listeners also
-        const boards_div = document.getElementById("boards");
-        for (let board of boards) {
-            const board_div = document.createElement(board);
-            board_div
-            boards_div.append(board)
-         }
-            document.getElementById("boards").innerHTML = 5 + 6;
-
-        data.boards
-
+        let boards_div = document.getElementById("boards");
+        boards.forEach(function(boardObject) {
+            console.log(boardObject);
+            let board_div = document.createElement("div");
+            board_div.className = "board";
+            board_div.id = "board_" + boardObject.id;
+            // board_div.addEventListener("click", function(){});
+            let header = document.createElement("span");
+            header.textContent = boardObject.title;
+            // board_heading.innerHTML = boardObject.title;
+            board_div.appendChild(header);
+            boards_div.appendChild(board_div);
+        });
     },
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called

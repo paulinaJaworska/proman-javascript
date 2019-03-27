@@ -45,45 +45,20 @@
         </ul>
     </header>
     <h2 id="h2"></h2>
-    <div id="boards" style="background-color:blue;">boards
-        <button type='button' onclick="">+ New Board</button>
-        <div id="board > board
-		<div id="board_heading"> board_heading
-        <button type='button' onclick="">+ New Card</button>
-        <button type='button' onclick="">Show/Hide</button>
+    <div id="boards" style="background-color:blue;"></div>
 
-        <div id="cards_container" style="background-color:red;">
-            <table>
-                <tr>
-                    <th>New</th>
-                    <th>In progress</th>
-                    <th>Testing</th>
-                    <th>Done</th>
-                </tr>
+        <div class="bg-modal" id="login-modal">
+            <div class="modal-contents">
 
-                <tr style="background-color:powderblue;">
-                    <td>er</td>
-                    <td>r</td>
-                    <td>ew</td>
-                    <td>we</td>
-                </tr>
+                <div class="close" onclick="dom.hideLoginModal()">+</div>
+                <div class="login-header">Log in</div>
+                <p id="login-error"></p>
 
-            </table>
-        </div> dfadsfa
-        </div>
-    </div>
-    <div class="bg-modal" id="login-modal">
-        <div class="modal-contents">
-
-            <div class="close" onclick="dom.hideLoginModal()">+</div>
-            <div class="login-header">Log in</div>
-            <p id="login-error"></p>
-
-            <form action="/login" id="login-form">
-                <input type="text" placeholder="username" name="username" id="login_username">
-                <input type="password" placeholder="password" name="password" id="login_password">
-                <button class="btn btn-success" type="submit">Submit</button>
-            </form>
+                <form action="/login" id="login-form">
+                    <input type="text" placeholder="username" name="username" id="login_username">
+                    <input type="password" placeholder="password" name="password" id="login_password">
+                    <button class="btn btn-success" type="submit">Submit</button>
+                </form>
 
         </div>
     </div>
