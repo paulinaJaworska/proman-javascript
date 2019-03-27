@@ -9,18 +9,49 @@ let dom = {
     showBoards: function (boards) {
         // shows boards appending them to #boards div
         // it adds necessary event listeners also
-        let boards_div = document.getElementById("boards");
+
+        // lvl 1 - area containing all boards
+        let boardsDiv = document.getElementById("boards");
         boards.forEach(function(boardObject) {
-            console.log(boardObject);
-            let board_div = document.createElement("div");
-            board_div.className = "board";
-            board_div.id = "board_" + boardObject.id;
-            // board_div.addEventListener("click", function(){});
+            // lvl 2 - area of board
+            let boardDiv = document.createElement("div");
+            boardDiv.className = "board";
+            boardDiv.id = "board_" + boardObject.id;
+            // boardDiv.addEventListener("click", function(){});
+            // lvl 3 - board header
             let header = document.createElement("span");
             header.textContent = boardObject.title;
-            // board_heading.innerHTML = boardObject.title;
-            board_div.appendChild(header);
-            boards_div.appendChild(board_div);
+            // lvl 3 - board content
+            let columns = document.createElement("div");
+            columns.className = "column";
+            columns.style.backgroundColor = "yellow"; // test
+
+            const columnsNames = ["New", "In progress", "Testing", "Done"];
+            columnsNames.forEach(function(name) {
+                // lvl 4 - particular column in columns
+                let column = document.createElement('div');
+                column.style.display = "inline-block"; //test
+                // lvl 5 - column name
+                let columnNameDiv = document.createElement('div');
+                columnNameDiv.textContent = name;
+                // lvl 5 - column content
+                let columnContentDiv = document.createElement('div');
+                columnContentDiv.style.background = "green"; //test
+                columnContentDiv.textContent = "column_content"; //test
+
+                column.appendChild(columnNameDiv).appendChild(columnContentDiv);
+                columns.appendChild(column);
+
+            });
+
+            let boardContent = document.createElement("div");
+            boardContent.innerHTML = "board content"; // test
+            boardContent.style.backgroundColor = "red"; // test
+
+            boardContent.appendChild(columns);
+            boardDiv.appendChild(header);
+            boardDiv.appendChild(boardContent);
+            boardsDiv.appendChild(boardDiv);
         });
     },
     loadCards: function (boardId) {
