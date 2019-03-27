@@ -17,13 +17,37 @@ let dom = {
             let boardDiv = document.createElement("div");
             boardDiv.className = "board";
             boardDiv.id = "board_" + boardObject.id;
-            // boardDiv.addEventListener("click", function(){});
             // lvl 3 - board header
             let header = document.createElement("span");
             header.textContent = boardObject.title;
+            let showHideArrow = document.createElement('span');
+            showHideArrow.id = "arrow";
+            showHideArrow.style.backgroundColor = "white";
+            showHideArrow.innerHTML = "arrow";
+            showHideArrow.addEventListener("click", function (){
+                let content = document.getElementById("board_content_" + boardObject.id);
+                // Show an element
+                const show = function (elem) {
+                    elem.style.display = 'block';
+                };
+                // Hide an element
+                const hide = function (elem) {
+                    elem.style.display = 'none';
+                };
+                // Toggle element visibility
+                // If the element is visible, hide it
+                if (content.style.display === 'block') {
+                    hide(content);
+                    return;
+                }
+                // Otherwise, show it
+                show(content);
+            });
+
             // lvl 3 - board content
             let columns = document.createElement("div");
             columns.className = "column";
+            columns.id = "board_content";
             columns.style.backgroundColor = "yellow"; // test
 
             const columnsNames = ["New", "In progress", "Testing", "Done"];
@@ -45,12 +69,15 @@ let dom = {
             });
 
             let boardContent = document.createElement("div");
+            boardContent.id = "board_content_"  + boardObject.id;
+            boardContent.style.display = "none";
+            //boardContent.onclick = "showHide";
             boardContent.innerHTML = "board content"; // test
             boardContent.style.backgroundColor = "red"; // test
 
+            header.appendChild(showHideArrow);
             boardContent.appendChild(columns);
-            boardDiv.appendChild(header);
-            boardDiv.appendChild(boardContent);
+            boardDiv.appendChild(header).appendChild(boardContent);
             boardsDiv.appendChild(boardDiv);
         });
     },
