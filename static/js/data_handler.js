@@ -90,6 +90,15 @@ let dataHandler = {
     createNewBoard: function (boardTitle, callback) {
         // creates new board, saves it and calls the callback function with its data
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
+        boardObject = {"id": 2,
+                       "title": "boardTitle",
+                       "is_active": true};
+        this._data['boards'].push(boardObject);
+        this._saveData()
+
+        //localStorage.userName = "rdegges";
+        //localStorage.setItem("favoriteColor", "black");
+
     },
     createNewCard: function (cardTitle, boardId, statusId, callback) {
         // creates new card, saves it and calls the callback function with its data
