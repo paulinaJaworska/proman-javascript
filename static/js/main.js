@@ -4,7 +4,7 @@ function init() {
     dataHandler.init();
     // loads the boards to the screen
     dom.loadBoards();
-    authentication.loginhandler();
+    authentication.loginHandler();
     authentication.registrationHandler()
 
 }
