@@ -81,18 +81,29 @@ let dom = {
             boardsDiv.appendChild(boardDiv);
         });
     },
+
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
         const cards = dataHandler._data.cards;
         this.showCards(cards)
     },
+
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
-        div
-        jako czajld do columny kontent
-        do odpowiedniej kolumny te dziecko dodane
+        let cardsDiv = document.getElementById("cards");
+        cards.forEach(function(cardObject) {
+            let cardDiv = document.createElement("div");
+            cardDiv.classname = "card";
+            cardDiv.id = "card_" + cardObject.id;
+
+
+
+        // div
+        // jako czajld do columny kontent
+        // do odpowiedniej kolumny te dziecko dodane
     },
+
     appendToElement: function (elementToExtend, textToAppend, prepend = false) {
         // function to append new DOM elements (represented by a string) to an existing DOM element
         let fakeDiv = document.createElement('div');
