@@ -90,15 +90,24 @@ let dataHandler = {
     createNewBoard: function (boardTitle, callback) {
         // creates new board, saves it and calls the callback function with its data
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
-        boardObject = {"id": 2,
-                       "title": "boardTitle",
-                       "is_active": true};
-        this._data['boards'].push(boardObject);
-        this._saveData()
+        // generate next id
+        boardsArray = this._data['boards'];
 
-        //localStorage.userName = "rdegges";
-        //localStorage.setItem("favoriteColor", "black");
+        let max = 0;
+        for(var i=0;i<boardsArray.length;i++){
+            if(boardsArray[i].id > max){
+                max = boardsArray[i].id;
+            }
+        }
+        let nextId = max + 1;
 
+        newBoardObject = {"id": nextId,
+                           "title": boardTitle,
+                           "is_active": true};
+
+        this._data['boards'].push(newBoardObject);
+
+        callback(this._data);  // not sure about this line
     },
     createNewCard: function (cardTitle, boardId, statusId, callback) {
         // creates new card, saves it and calls the callback function with its data
