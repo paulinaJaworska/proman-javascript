@@ -91,28 +91,52 @@ let dataHandler = {
         // creates new board, saves it and calls the callback function with its data
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
         // generate next id
-        boardsArray = this._data['boards'];
+        let boardsArray = this._data['boards'];
 
         let max = 0;
-        for(var i=0;i<boardsArray.length;i++){
+        for(let i=0;i<boardsArray.length;i++){
             if(boardsArray[i].id > max){
                 max = boardsArray[i].id;
             }
         }
         let nextId = max + 1;
 
-        newBoardObject = {"id": nextId,
-                           "title": boardTitle,
-                           "is_active": true};
+        let newBoardObject = {
+            'id': nextId,
+            'title': boardTitle,
+            'is_active': true
+        };
 
         this._data['boards'].push(newBoardObject);
 
         callback(this._data);  // not sure about this line
     },
+
     createNewCard: function (cardTitle, boardId, statusId, callback) {
         // creates new card, saves it and calls the callback function with its data
         if (typeof callback !== 'function') throw new Error('Invalid callback handler');
-    }
-    // here comes more features
-};
 
+        let cardsArray = this._data['cards'];
+
+        let max = 0;
+        for (let i=0;i<cardsArray.length;i++) {
+            if(cardsArray[i].id > max){
+                max = cardsArray[i].id;
+            }
+        }
+        let nextId = max + 1;
+
+        let newCardObject = {
+            'id': nextId,
+            'title': cardTitle,
+            'board_id': boardId,
+            'status_id': statusId,
+            'order': null
+        };
+
+        this._data['boards'].push(newCardObject);
+
+        callback(this._data);  // not sure about this line
+
+    }
+};
