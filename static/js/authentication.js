@@ -145,8 +145,8 @@ function registerUser(username, password) {
 }
 
 function afterServerResponse(message) {
-    hideRegisterModal();
-    hideLoginModal();
+    dom.hideRegisterModal();
+    dom.hideLoginModal();
     alert(message);
-    viewAfterUserForm(message)
+    dom.viewAfterUserForm(message)
 }

@@ -1,5 +1,8 @@
-#boards {
-    background-color: green;
+.board {
+    background-color: seagreen;
+    margin-bottom: 10px;
+    min-height: 30px;
+    border: solid 1px darkgray;
 }
 
 .btn-sm {
@@ -128,3 +131,13 @@ input {
     padding: 20px;
     position: relative;
     border-radius: 12px;}
+
+#arrow {
+    color: gainsboro;
+    padding: 5px;
+}
+
+#arrow:hover {
+    color: white;
+
+}

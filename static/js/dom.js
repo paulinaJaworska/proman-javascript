@@ -22,8 +22,7 @@ let dom = {
             header.textContent = boardObject.title;
             let showHideArrow = document.createElement('span');
             showHideArrow.id = "arrow";
-            showHideArrow.style.backgroundColor = "white";
-            showHideArrow.innerHTML = "arrow";
+            showHideArrow.innerHTML = '<i class="far fa-caret-square-down"></i>';
             showHideArrow.addEventListener("click", function (){
                 let content = document.getElementById("board_content_" + boardObject.id);
                 // Show an element
