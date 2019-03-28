@@ -49,14 +49,16 @@ let dom = {
             columns.id = "board_content";
             columns.style.backgroundColor = "yellow"; // test
 
-            const columnsNames = ["New", "In progress", "Testing", "Done"];
-            columnsNames.forEach(function(name) {
+            let statuses = dataHandler._data.statuses;
+            statuses.forEach(function(status) {
                 // lvl 4 - particular column in columns
                 let column = document.createElement('div');
+                column.id = "status_" + status.id;
                 column.style.display = "inline-block"; //test
                 // lvl 5 - column name
                 let columnNameDiv = document.createElement('div');
-                columnNameDiv.textContent = name;
+                columnNameDiv.id = "column_name";
+                columnNameDiv.textContent = status.name;
                 // lvl 5 - column content
                 let columnContentDiv = document.createElement('div');
                 columnContentDiv.style.background = "green"; //test
