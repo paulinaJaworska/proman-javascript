@@ -24,7 +24,7 @@
 }
 
 .navbar {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 
@@ -139,5 +139,11 @@ input {
 
 #arrow:hover {
     color: white;
+
+}
+
+#add-button {
+
+
 
 }
