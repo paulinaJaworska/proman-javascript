@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ProMan</title>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
     <script src="{{ url_for('static', filename='js/data_handler.js') }}" defer></script>
     <script src="{{ url_for('static', filename='js/dom.js') }}" defer></script>
@@ -16,74 +17,91 @@
     <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </head>
 <body>
-    <header class="navbar navbar-fluid navbar-dark bg-dark flex-column flex-md-row bd-navbar">
-        <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="ApiWars"><h1>ProMan</h1>
-        </a>
+<header class="navbar navbar-fluid navbar-dark bg-dark flex-column flex-md-row bd-navbar">
+    <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="ApiWars"><h1>ProMan</h1>
+    </a>
 
 
-        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-            <li class="nav-item">
-                <div class="nav-item  mr-md-2" id="Logged_user">
-                    <h5 id="hello"></h5>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-item  nav-link  mr-md-2 Logout" href="/logout" id="Logout">
-                </a>
-            </li>
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+        <li class="nav-item">
+            <div class="nav-item  mr-md-2" id="Logged_user">
+                <h5 id="hello"></h5>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-item  nav-link  mr-md-2 Logout" href="/logout" id="Logout">
+            </a>
+        </li>
 
-            <li class="nav-item">
-                <a class="nav-item  nav-link  mr-md-2" href="#" id="Login" onclick="dom.showLoginModal()">
-                    Login
-                </a>
-            </li>
+        <li class="nav-item">
+            <a class="nav-item  nav-link  mr-md-2" href="#" id="Login" onclick="dom.showLoginModal()">
+                Login
+            </a>
+        </li>
 
-            <li class="nav-item">
-                <a class="nav-item  nav-link  mr-md-2" href="#" id="Register" onclick="dom.showRegisterModal()">
-                    Register
-                </a>
-            </li>
-        </ul>
-    </header>
-    <h2 id="h2"></h2>
+        <li class="nav-item">
+            <a class="nav-item  nav-link  mr-md-2" href="#" id="Register" onclick="dom.showRegisterModal()">
+                Register
+            </a>
+        </li>
+    </ul>
+</header>
+<h2 id="h2"></h2>
 
-    <button class="btn btn-sm btn-secondary offset-11 mb-3" id="add-button">+ Add board</button>
+<button class="btn btn-sm btn-secondary offset-11 mb-3" id="add-button" onclick="dom.showBoardModal()">+ Add board
+</button>
 
 
-    <div id="boards"></div>
+<div id="boards"></div>
 
-        <div class="bg-modal" id="login-modal">
-            <div class="modal-contents">
+<div class="bg-modal" id="login-modal">
+    <div class="modal-contents">
 
-                <div class="close" onclick="dom.hideLoginModal()">+</div>
-                <div class="login-header">Log in</div>
-                <p id="login-error"></p>
+        <div class="close" onclick="dom.hideLoginModal()">+</div>
+        <div class="login-header">Log in</div>
+        <p id="login-error"></p>
 
-                <form action="/login" id="login-form">
-                    <input type="text" placeholder="username" name="username" id="login_username">
-                    <input type="password" placeholder="password" name="password" id="login_password">
-                    <button class="btn btn-success" type="submit">Submit</button>
-                </form>
+        <form action="/login" id="login-form">
+            <input type="text" placeholder="username" name="username" id="login_username">
+            <input type="password" placeholder="password" name="password" id="login_password">
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
 
-        </div>
+    </div>
+</div>
+
+<div class="bg-modal" id="register-modal">
+    <div class="modal-contents">
+
+        <div class="close" onclick="dom.hideRegisterModal()">+</div>
+        <div class="login-header">Registration</div>
+
+        <p id="register-error"></p>
+
+        <form action="/register" id="register-form" role="form">
+            <input type="text" placeholder="username" name="username" id="register_username">
+            <input type="password" placeholder="password" name="password" id="register_password">
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
+
+    </div>
+</div>
+<div class="bg-modal" id="newboard-modal">
+    <div class="modal-contents">
+
+        <div class="close" onclick="dom.hideBoardModal()">+</div>
+        <div class="newboard-header">Title of the new board</div>
+        <p id="title-error"></p>
+
+        <form action="/newboard" id="newboard-form">
+            <input type="text" placeholder="title of the board" name="title_newboard" id="title_newboard">
+            <button class="btn btn-secondary" type="submit">Submit</button>
+        </form>
+
     </div>
 
-    <div class="bg-modal" id="register-modal">
-        <div class="modal-contents">
+</div>
 
-            <div class="close" onclick="dom.hideRegisterModal()">+</div>
-            <div class="login-header">Registration</div>
-
-            <p id="register-error"></p>
-
-            <form action="/register" id="register-form" role="form">
-                <input type="text" placeholder="username" name="username" id="register_username">
-                <input type="password" placeholder="password" name="password" id="register_password">
-                <button class="btn btn-success" type="submit">Submit</button>
-            </form>
-
-        </div>
-    </div>
 
 </body>
 

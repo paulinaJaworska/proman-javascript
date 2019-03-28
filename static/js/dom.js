@@ -154,6 +154,14 @@ let dom = {
                 setTimeout(function() {showRegisterModal()}, 500);
                 break;
         }
+    },
+    hideBoardModal: function hideBoardModal() {
+        document.getElementById('newboard-modal').style.display = "none";
+    },
+
+    showBoardModal: function showBoardModal() {
+        debugger;
+        document.getElementById('newboard-modal').style.display = "flex";
     }
 
 };
