@@ -83,10 +83,15 @@ let dom = {
     },
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
+        const cards = dataHandler._data.cards;
+        this.showCards(cards)
     },
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
+        div
+        jako czajld do columny kontent
+        do odpowiedniej kolumny te dziecko dodane
     },
     appendToElement: function (elementToExtend, textToAppend, prepend = false) {
         // function to append new DOM elements (represented by a string) to an existing DOM element
